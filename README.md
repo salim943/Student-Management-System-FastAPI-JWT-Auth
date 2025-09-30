@@ -9,4 +9,7 @@ In the project directory, you can run:
 ### For beckend
 ### 'uvicorn app.main:app --reload'
 
-[http://localhost:5173](http://localhost:5173) 
+![Student Management System](https://github.com/salim943/Student-Management-System-FastAPI-JWT-Auth/blob/master/studentManagementSystem1.png)
+![Student Management System](https://github.com/salim943/Student-Management-System-FastAPI-JWT-Auth/blob/master/studentManagementSystem2.png)
+![Student Management System](https://github.com/salim943/Student-Management-System-FastAPI-JWT-Auth/blob/master/studentManagementSystem3.png)
+
