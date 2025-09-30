@@ -1,0 +1,50 @@
+import React, { useEffect, useState } from 'react';
+
+function DatabaseList() {
+  const [databases, setDatabases] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDatabases = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem('access_token');
+        const response = await fetch('http://localhost:8000/databases', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch databases');
+        }
+        
+        const data = await response.json();
+        setDatabases(data.databases);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDatabases();
+  }, []);
+
+  if (loading) return <div className="p-4">Loading databases...</div>;
+  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+
+  return (
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-4">Available Databases</h2>
+      <ul className="list-disc pl-5">
+        {databases.map((db, index) => (
+          <li key={index} className="py-1">{db}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default DatabaseList;
